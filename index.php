@@ -10,19 +10,21 @@ $reads = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html>
     <head>
         <title>ToDoList</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class ="container">
         <form action = "add_task.php" method = "POST">
             <h2>To Do List Application</h2>
             
             <fieldset>
                 <legend>Create Tasks</legend>
                 
-                <label for = "tasks">Input your tasks</label><br>
-                <input type = "text" name = "task" required><br><br>
+                <label for = "tasks">Input your tasks</label>
+                <input type = "text" name = "task" required>
                 
-                <label for = "dates">Select Date</label><br>
-                <input type = "date" name = "date"><br><br>
+                <label for = "dates">Select Date</label>
+                <input type = "date" name = "date">
                 
                 <button type="submit">Add task</button>
             </fieldset>
@@ -33,13 +35,16 @@ $reads = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         <ul>
         <?php foreach($reads as $read): ?>
-            <li>
-                <?php echo htmlspecialchars($read['task']?? ''); ?><br>
-                <?php echo htmlspecialchars($read['date']?? ''); ?><br>
+            <div class="good">
+                <br><br>
+                Tasks: <?php echo htmlspecialchars($read['task']?? ''); ?><br><br>
+                Date: <?php echo htmlspecialchars($read['date']?? ''); ?><br><br>
                 <a href="edit_task.php?id=<?php echo $read['id']; ?>">Update</a>
-            </li>
+                <a href="delete_task.php?id=<?php echo htmlspecialchars($read['id']?? ''); ?>">Delete</a><br><br><br>
+               </div>
             <?php endforeach; ?>
         </ul>
         </fieldset>
+        </div>
     </body>
 </html>
