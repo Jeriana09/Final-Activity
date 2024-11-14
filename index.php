@@ -36,6 +36,7 @@ $reads = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <li>
                 <?php echo htmlspecialchars($read['task']?? ''); ?><br>
                 <?php echo htmlspecialchars($read['date']?? ''); ?><br>
+                <a href="edit_task.php?id=<?php echo $read['id']; ?>">Update</a>
             </li>
             <?php endforeach; ?>
         </ul>
