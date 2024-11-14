@@ -1,10 +1,18 @@
+<?php
+include('db.php');
+
+$stmt = $pdo->query("SELECT * FROM $table");
+$reads = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>ToDoList</title>
     </head>
     <body>
-        <form action = "" method = "">
+        <form action = "add_task.php" method = "POST">
             <h2>To Do List Application</h2>
             
             <fieldset>
@@ -19,5 +27,18 @@
                 <button type="submit">Add task</button>
             </fieldset>
         </form>
+        
+        <fieldset>
+        <legend>My Task List</legend>
+        
+        <ul>
+        <?php foreach($reads as $read): ?>
+            <li>
+                <?php echo htmlspecialchars($read['task']?? ''); ?><br>
+                <?php echo htmlspecialchars($read['date']?? ''); ?><br>
+            </li>
+            <?php endforeach; ?>
+        </ul>
+        </fieldset>
     </body>
 </html>
